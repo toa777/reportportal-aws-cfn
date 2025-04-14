@@ -8,15 +8,14 @@ x-logging: &logging
 x-hosts:
   OS_HOST: &opensearch_host opensearch
   AMQP_HOST: &rabbitmq_host rabbitmq
-  DB_HOST: &db_host postgres
 
 ## Common environment variables for ReportPortal Core services
 x-environment: &common-environment
-  RP_DB_HOST: *db_host
+  RP_DB_HOST: &db_host ${DB_HOST}
+  RP_DB_USER: ${DATABASE_USER}
+  RP_DB_PASS: ${DATABASE_PASSWORD}
+  RP_DB_NAME: ${DATABASE_NAME}
   RP_DB_PORT: &db_port 5432
-  RP_DB_USER: &db_user rpuser
-  RP_DB_PASS: &db_password rppass
-  RP_DB_NAME: &db_name reportportal
   RP_AMQP_HOST: *rabbitmq_host
   RP_AMQP_PORT: 5672
   RP_AMQP_APIPORT: 15672
