@@ -94,37 +94,6 @@ services:
     restart: always
 
   ## PostgreSQL as the main database for ReportPortal
-  postgres:
-    image: bitnami/postgresql:16.4.0-debian-12-r7
-    container_name: *db_host
-    logging:
-      <<: *logging
-    shm_size: '512m'
-    environment:
-      POSTGRES_USER: *db_user
-      POSTGRES_PASSWORD: *db_password
-      POSTGRES_DB: *db_name
-      POSTGRESQL_CHECKPOINT_COMPLETION_TARGET: 0.9
-      WORK_MEM: 96M
-      WAL_WRITER_DELAY: 20ms
-      SYNCHRONOUS_COMMIT: off
-      WAL_BUFFERS: 32MB
-      MIN_WAL_SIZE: 2GB
-      MAX_WAL_SIZE: 4GB
-    volumes:
-      - postgres:/bitnami/postgresql
-    ## Uncomment to expose Database
-    # ports:
-    #   - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
-      interval: 10s
-      timeout: 120s
-      retries: 10
-    networks:
-      - reportportal
-    restart: always
-
   ## RabbitMQ for messaging between services
   rabbitmq:
     image: bitnami/rabbitmq:3.13.7-debian-12-r2
