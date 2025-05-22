@@ -12,9 +12,9 @@ x-hosts:
 ## Common environment variables for ReportPortal Core services
 x-environment: &common-environment
   RP_DB_HOST: &db_host ${DB_HOST}
-  RP_DB_USER: ${DATABASE_USER}
-  RP_DB_PASS: ${DATABASE_PASSWORD}
-  RP_DB_NAME: ${DATABASE_NAME}
+  RP_DB_USER: &db_user ${DATABASE_USER}
+  RP_DB_PASS: &db_password ${DATABASE_PASSWORD}
+  RP_DB_NAME: &db_name ${DATABASE_NAME}
   RP_DB_PORT: &db_port 5432
   RP_AMQP_HOST: *rabbitmq_host
   RP_AMQP_PORT: 5672
