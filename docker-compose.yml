@@ -376,7 +376,7 @@ services:
     restart: always
 
   migrations:
-    image: reportportal/migrations:5.12.1
+    image: reportportal/migrations:5.12.0
     logging:
       <<: *logging
     environment:
@@ -399,7 +399,6 @@ services:
 volumes:
   opensearch:
   storage:
-  postgres:
 
 ## Define custom network for ReportPortal services
 networks:
